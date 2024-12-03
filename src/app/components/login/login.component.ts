@@ -17,8 +17,8 @@ export class LoginComponent {
 
   private validUsername = 'Raul';
   private validPassword = '0214';
-  private adminUsername = 'admin';
-  private adminPassword = 'admin';
+  private adminUsername = 'Keren';
+  private adminPassword = '0223';
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
@@ -36,14 +36,12 @@ export class LoginComponent {
   
     const { username, password } = this.loginForm.value;
   
-    if (username === this.validUsername && password === this.validPassword) {
+    if ((username === this.validUsername && password === this.validPassword) || 
+        (username === this.adminUsername && password === this.adminPassword)) {
       localStorage.setItem('token', 'simulated-token');
-      this.router.navigate(['/dashboard']); 
-    }  if (username === this.adminUsername && password === this.adminPassword) {
-      localStorage.setItem('token', 'simulated-token');
-      this.router.navigate(['/dashboard-admin']); 
+      this.router.navigate(['/home']);
     } else {
-      this.errorMessage = 'Invalid username or password';
+      this.errorMessage = 'Username o Password incorrectos';
     }
   }
 }
