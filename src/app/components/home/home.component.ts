@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../services/pokemon.service';
 import { Pokemon } from '../models/pokemon.model';
-import {RouterLink, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';;
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   loading: boolean = false;
   error: string = '';
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private pokemonService: PokemonService, private router: Router) {} 
 
   ngOnInit(): void {
     this.getPokemons();
@@ -37,5 +38,10 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  logout(): void {
+    localStorage.clear(); 
+    this.router.navigate(['/']);
   }
 }
