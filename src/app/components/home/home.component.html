@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="container">
+  <h1>Lista de Pokémon</h1>
+  <div *ngIf="loading" class="loading">Cargando Pokémon...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!loading && !error" class="pokemon-grid">
+    <div class="pokemon-card" *ngFor="let pokemon of pokemons; let i = index">
+      <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.id + '.png'" alt="{{ pokemon.name }}">
+      <h2>{{ pokemon.name | uppercase }}</h2>
+      <p><strong>Tipos:</strong> {{ pokemon.types }}</p>
+      <p><strong>Altura:</strong> {{ pokemon.height }} decímetros</p>
+      <p><strong>Peso:</strong> {{ pokemon.weight }} hectogramos</p>
+      <p><strong>Habilidades:</strong> {{ pokemon.abilities }}</p>
+    </div>
+  </div>
+</div>
